@@ -28,6 +28,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
+                    {% include 'admin/partials/flash.html.twig' %}
                     <div class="card">
                         <!-- /.card-header -->
                         <div class="card-body">
@@ -42,16 +43,16 @@
                                 </thead>
                                 <tbody>
 
-                                {% for offer in offers %}
+                                {% for row in rows %}
                                     <tr>
 
 
                                         <td>
-                                            {{ offer.title }}
+                                            {{ row.title }}
                                         </td>
 
                                         <td>
-                                            {% if offer.active %}
+                                            {% if row.active %}
                                                 <span class="badge badge-success">actif</span>
                                             {% else %}
                                                 <span class="badge badge-danger">inactif</span>
@@ -61,18 +62,18 @@
 
                                         <td class="text-center">
                                             <div class="btn-group" role="group" aria-label="Second group">
-                                                <a href="{{ path('admin_offer_edit',{'id': offer.id}) }}"
+                                                <a href="{{ path('admin_offer_edit',{'id': row.id}) }}"
                                                    class="btn btn-sm btn-primary"><i class="far fa-edit"></i></a>
                                                 <a href="javascript:void(0);"
                                                    onclick="if (confirm('Voulez vous vraiment supprimer cet enregistrement ?'))
-                                                           {document.getElementById('delete-offer-{{ offer.id }}').submit();} else {return false;}"
+                                                           {document.getElementById('delete-offer-{{ row.id }}').submit();} else {return false;}"
                                                    class="btn btn-sm btn-danger">
                                                     <i class="fa fa-trash"></i>
                                                 </a>
                                             </div>
-                                            <form action="{{ url('admin_offer_delete',{'id': offer.id}) }}"
+                                            <form action="{{ url('admin_offer_delete',{'id': row.id}) }}"
                                                   method="POST"
-                                                  id="delete-offer-{{ offer.id }}" class="d-none">
+                                                  id="delete-offer-{{ row.id }}" class="d-none">
                                                 <input type="hidden" name="token" value="{{ csrf_token('delete') }}">
                                             </form>
                                         </td>

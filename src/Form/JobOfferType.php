@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use App\Data\JobOfferData;
 use App\Entity\JobOffer;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -26,7 +27,7 @@ class JobOfferType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => JobOffer::class,
+            'data_class' => JobOfferData::class,
         ]);
     }
 }

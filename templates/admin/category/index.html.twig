@@ -29,6 +29,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
+                    {% include 'admin/partials/flash.html.twig' %}
                     <div class="card">
                         <!-- /.card-header -->
                         <div class="card-body">
@@ -42,29 +43,29 @@
                                 </thead>
                                 <tbody>
 
-                                {% for category in categories %}
+                                {% for row in rows %}
                                     <tr>
 
 
                                         <td>
-                                            {{ category.title }}
+                                            {{ row.title }}
                                         </td>
 
 
                                         <td class="text-center">
                                             <div class="btn-group" role="group" aria-label="Second group">
-                                                <a href="{{ path('admin_category_edit',{'id': category.id}) }}"
+                                                <a href="{{ path('admin_category_edit',{'id': row.id}) }}"
                                                    class="btn btn-sm btn-primary"><i class="far fa-edit"></i></a>
                                                 <a href="javascript:void(0);"
                                                    onclick="if (confirm('Voulez vous vraiment supprimer cet enregistrement ?'))
-                                                           {document.getElementById('delete-category-{{ category.id }}').submit();} else {return false;}"
+                                                           {document.getElementById('delete-category-{{ row.id }}').submit();} else {return false;}"
                                                    class="btn btn-sm btn-danger">
                                                     <i class="fa fa-trash"></i>
                                                 </a>
                                             </div>
-                                            <form action="{{ url('admin_category_delete',{'id': category.id }) }}"
+                                            <form action="{{ url('admin_category_delete',{'id': row.id }) }}"
                                                   method="POST"
-                                                  id="delete-category-{{ category.id }}" class="d-none">
+                                                  id="delete-category-{{ row.id }}" class="d-none">
                                                 <input type="hidden" name="token" value="{{ csrf_token('delete') }}">
                                             </form>
                                         </td>

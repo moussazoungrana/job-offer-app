@@ -2,11 +2,8 @@
 
 namespace App\Controller\Admin;
 
+use App\Data\CategoryData;
 use App\Entity\Category;
-use App\Form\CategoryType;
-use App\Repository\CategoryRepository;
-use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -14,65 +11,40 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * @Route("/admin/category")
  */
-class CategoryController extends AbstractController
+class CategoryController extends CrudController
 {
-    protected CategoryRepository $categoryRepository;
-    protected EntityManagerInterface $em;
+    protected string $templatePath = 'category';
 
-    public function __construct(CategoryRepository $categoryRepository, EntityManagerInterface $em)
-    {
-        $this->categoryRepository = $categoryRepository;
-        $this->em = $em;
-    }
+    protected string $entity = Category::class;
+    protected string $routePrefix = 'admin_category';
+    protected bool $indexOnSave = false;
+
 
     /**
      * @Route("/",name="admin_category_index")
      */
     public function index(): Response
     {
-        $categories = $this->categoryRepository->findAll();
-        return $this->render('admin/category/index.html.twig', [
-            'categories' => $categories,
-        ]);
+        return $this->crudIndex();
     }
 
     /**
      * @Route("/news", name="admin_category_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(): Response
     {
-        $category = new Category();
-        $form = $this->createForm(CategoryType::class, $category);
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $this->em->persist($category);
-            $this->em->flush();
-            return $this->redirectToRoute('admin_category_index');
-        }
-
-        return $this->render('admin/category/new.html.twig', [
-            'category' => $category,
-            'form' => $form->createView()
-        ]);
+        $entity = new Category();
+        $data = new CategoryData($entity);
+        return $this->crudNew($data);
     }
 
     /**
      * @Route("/{id}/edit", name="admin_category_edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, Category $category): Response
+    public function edit(Category $category): Response
     {
-        $form = $this->createForm(CategoryType::class, $category);
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $this->em->persist($category);
-            $this->em->flush();
-            return $this->redirectToRoute('admin_category_index');
-        }
-
-        return $this->render('admin/category/edit.html.twig', [
-            'form' => $form->createView(),
-            'category' => $category
-        ]);
+        $data = (new CategoryData($category))->setEntityManager($this->em);
+        return $this->crudEdit($data);
     }
 
     /**
@@ -84,8 +56,6 @@ class CategoryController extends AbstractController
         if (!$this->isCsrfTokenValid('delete', $token)) {
             return $this->redirectToRoute('admin_category_index');
         }
-        $this->em->remove($category);
-        $this->em->flush();
-        return $this->redirectToRoute('admin_category_index');
+       return $this->crudDelete($category);
     }
 }

@@ -31,7 +31,7 @@ class JobOffer
     /**
      * @ORM\Column(type="boolean",options={"default":false})
      */
-    private $active;
+    private bool $active = false;
 
     /**
      * @Gedmo\Timestampable(on="create")

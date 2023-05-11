@@ -2,6 +2,7 @@
 
 namespace App\Controller\Admin;
 
+use App\Data\JobOfferData;
 use App\Entity\JobOffer;
 use App\Form\JobOfferType;
 use App\Repository\JobOfferRepository;
@@ -14,46 +15,31 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * @Route("/admin/offer")
  */
-class JobOfferController extends AbstractController
+class JobOfferController extends CrudController
 {
-    protected JobOfferRepository $offerRepository;
-    protected EntityManagerInterface $em;
+    protected string $templatePath = 'offer';
 
-    public function __construct(JobOfferRepository $offerRepository, EntityManagerInterface $em)
-    {
-        $this->offerRepository = $offerRepository;
-        $this->em = $em;
-    }
+    protected string $entity = JobOffer::class;
+    protected string $routePrefix = 'admin_offer';
+    protected bool $indexOnSave = false;
+
 
     /**
      * @Route("/",name="admin_offer_index")
      */
     public function index(): Response
     {
-        $offers = $this->offerRepository->findAll();
-        return $this->render('admin/offer/index.html.twig', [
-            'offers' => $offers,
-        ]);
+       return $this->crudIndex();
     }
 
     /**
      * @Route("/news", name="admin_offer_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(): Response
     {
-        $offer = new JobOffer();
-        $form = $this->createForm(JobOfferType::class, $offer);
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $this->em->persist($offer);
-            $this->em->flush();
-            return $this->redirectToRoute('admin_offer_index');
-        }
-
-        return $this->render('admin/offer/new.html.twig', [
-            'offer' => $offer,
-            'form' => $form->createView()
-        ]);
+        $entity = new JobOffer();
+        $data = new JobOfferData($entity);
+       return $this->crudNew($data);
     }
 
     /**
@@ -61,18 +47,8 @@ class JobOfferController extends AbstractController
      */
     public function edit(Request $request, JobOffer $offer): Response
     {
-        $form = $this->createForm(JobOfferType::class, $offer);
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $this->em->persist($offer);
-            $this->em->flush();
-            return $this->redirectToRoute('admin_offer_index');
-        }
-
-        return $this->render('admin/offer/edit.html.twig', [
-            'form' => $form->createView(),
-            'offer' => $offer
-        ]);
+        $data = (new JobOfferData($offer))->setEntityManager($this->em);
+        return $this->crudEdit($data);
     }
 
     /**
@@ -84,8 +60,6 @@ class JobOfferController extends AbstractController
         if (!$this->isCsrfTokenValid('delete', $token)) {
             return $this->redirectToRoute('admin_offer_index');
         }
-        $this->em->remove($offer);
-        $this->em->flush();
-        return $this->redirectToRoute('admin_offer_index');
+        return $this->crudDelete($offer);
     }
 }
