@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/admin/offers")
+ * @Route("/admin/offer")
  */
 class JobOfferController extends AbstractController
 {
@@ -26,18 +26,18 @@ class JobOfferController extends AbstractController
     }
 
     /**
-     * @Route("/",name="admin_offers_index")
+     * @Route("/",name="admin_offer_index")
      */
     public function index(): Response
     {
         $offers = $this->offerRepository->findAll();
-        return $this->render('admin/offers/index.html.twig', [
+        return $this->render('admin/offer/index.html.twig', [
             'offers' => $offers,
         ]);
     }
 
     /**
-     * @Route("/news", name="admin_offers_new", methods={"GET","POST"})
+     * @Route("/news", name="admin_offer_new", methods={"GET","POST"})
      */
     public function new(Request $request): Response
     {
@@ -47,17 +47,17 @@ class JobOfferController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->em->persist($offer);
             $this->em->flush();
-            return $this->redirectToRoute('admin_offers_index');
+            return $this->redirectToRoute('admin_offer_index');
         }
 
-        return $this->render('admin/offers/new.html.twig', [
+        return $this->render('admin/offer/new.html.twig', [
             'offer' => $offer,
             'form' => $form->createView()
         ]);
     }
 
     /**
-     * @Route("/{id}/edit", name="admin_offers_edit", methods={"GET","POST"})
+     * @Route("/{id}/edit", name="admin_offer_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, JobOffer $offer): Response
     {
@@ -66,26 +66,26 @@ class JobOfferController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->em->persist($offer);
             $this->em->flush();
-            return $this->redirectToRoute('admin_offers_index');
+            return $this->redirectToRoute('admin_offer_index');
         }
 
-        return $this->render('admin/offers/edit.html.twig', [
+        return $this->render('admin/offer/edit.html.twig', [
             'form' => $form->createView(),
             'offer' => $offer
         ]);
     }
 
     /**
-     * @Route("/{id}/delete", name="admin_offers_delete", methods={"POST"})
+     * @Route("/{id}/delete", name="admin_offer_delete", methods={"POST"})
      */
     public function delete(Request $request, JobOffer $offer): Response
     {
         $token = $request->request->get('token');
         if (!$this->isCsrfTokenValid('delete', $token)) {
-            return $this->redirectToRoute('admin_offers_index');
+            return $this->redirectToRoute('admin_offer_index');
         }
         $this->em->remove($offer);
         $this->em->flush();
-        return $this->redirectToRoute('admin_offers_index');
+        return $this->redirectToRoute('admin_offer_index');
     }
 }

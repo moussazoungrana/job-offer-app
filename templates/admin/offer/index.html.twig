@@ -17,7 +17,7 @@
                     </h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
-                    <a href="{{ path('admin_offers_new') }}" class="btn btn-dark float-sm-right">Ajouter une offre</a>
+                    <a href="{{ path('admin_offer_new') }}" class="btn btn-dark float-sm-right">Ajouter une offre</a>
                 </div>
             </div><!-- /.row -->
         </div><!-- /.container-fluid -->
@@ -61,7 +61,7 @@
 
                                         <td class="text-center">
                                             <div class="btn-group" role="group" aria-label="Second group">
-                                                <a href="{{ path('admin_offers_edit',{'id': offer.id}) }}"
+                                                <a href="{{ path('admin_offer_edit',{'id': offer.id}) }}"
                                                    class="btn btn-sm btn-primary"><i class="far fa-edit"></i></a>
                                                 <a href="javascript:void(0);"
                                                    onclick="if (confirm('Voulez vous vraiment supprimer cet enregistrement ?'))
@@ -70,7 +70,7 @@
                                                     <i class="fa fa-trash"></i>
                                                 </a>
                                             </div>
-                                            <form action="{{ url('admin_offers_delete',{'id': offer.id}) }}"
+                                            <form action="{{ url('admin_offer_delete',{'id': offer.id}) }}"
                                                   method="POST"
                                                   id="delete-offer-{{ offer.id }}" class="d-none">
                                                 <input type="hidden" name="token" value="{{ csrf_token('delete') }}">
