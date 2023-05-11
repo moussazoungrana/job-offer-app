@@ -1,0 +1,45 @@
+{% extends 'admin/layouts/base.html.twig' %}
+
+{% block title %}
+    Articles
+{% endblock %}
+
+{% block content %}
+
+
+    <div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">
+                    <i class="fa fa-bullhorn"></i>
+                    Offres d'emploi
+                </h1>
+            </div><!-- /.col -->
+
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+
+                <div class="col-md-8 mx-auto">
+
+                    <div class="card card-primary">
+                        <div class="card-header bg-dark">
+                            <h3 class="card-title">Ajouter une offre</h3>
+                        </div>
+
+                        {% include 'admin/offers/_form.html.twig' %}
+
+                    </div>
+
+
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

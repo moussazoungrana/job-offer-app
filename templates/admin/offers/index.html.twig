@@ -1,0 +1,98 @@
+{% extends 'admin/layouts/base.html.twig' %}
+
+{% block title %}
+    Catégories
+{% endblock %}
+
+
+{% block content %}
+
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0">
+                        <i class="fa fa-bullhorn"></i>
+                        Articles
+                    </h1>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                    <a href="{{ path('admin_offers_new') }}" class="btn btn-dark float-sm-right">Ajouter une offre</a>
+                </div>
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <table id="example1" class="table table-bordered table-striped">
+                                <thead>
+                                <tr>
+                                    <th>Titre</th>
+                                    <th>Status</th>
+                                    <th style="width:100px; min-width:100px;" class="text-center text-danger"><i
+                                                class="fa fa-bolt"> </i></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+
+                                {% for offer in offers %}
+                                    <tr>
+
+
+                                        <td>
+                                            {{ offer.title }}
+                                        </td>
+
+                                        <td>
+                                            {% if offer.active %}
+                                                <span class="badge badge-success">actif</span>
+                                            {% else %}
+                                                <span class="badge badge-danger">inactif</span>
+                                            {% endif %}
+                                        </td>
+
+
+                                        <td class="text-center">
+                                            <div class="btn-group" role="group" aria-label="Second group">
+                                                <a href="{{ path('admin_offers_edit',{'id': offer.id}) }}"
+                                                   class="btn btn-sm btn-primary"><i class="far fa-edit"></i></a>
+                                                <a href="javascript:void(0);"
+                                                   onclick="if (confirm('Voulez vous vraiment supprimer cet enregistrement ?'))
+                                                           {document.getElementById('delete-offer-{{ offer.id }}').submit();} else {return false;}"
+                                                   class="btn btn-sm btn-danger">
+                                                    <i class="fa fa-trash"></i>
+                                                </a>
+                                            </div>
+                                            <form action="{{ url('admin_offers_delete',{'id': offer.id}) }}"
+                                                  method="POST"
+                                                  id="delete-offer-{{ offer.id }}" class="d-none">
+                                                <input type="hidden" name="token" value="{{ csrf_token('delete') }}">
+                                            </form>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+
+
+                                </tbody>
+
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
+    </section>
+{% endblock %}
+
