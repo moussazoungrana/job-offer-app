@@ -64,7 +64,6 @@ class CrudController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             /** @var E $entity */
             $entity = $data->getEntity();
-            $old = clone $entity;
             $data->hydrate();
             $this->em->flush();
             $this->addFlash('success', 'Le contenu a bien été modifié');
