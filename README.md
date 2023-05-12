@@ -40,7 +40,7 @@ Et vous pouvez ensuite accéder à l'application en allant à l'url http://local
 L'administration permet la gestion de l'application et pour y accéder il faut aller à l'url http://localhost:8000/admin , 
 mails il faut être authentifié pour pouvoir avoir l'accès.
 
-Pour cela on créer une fixture qui permet de générer un utilisateur par défaut.  
+Pour cela on a créer une fixture qui permet de générer un utilisateur par défaut.  
 
 Vous pouvez la lancer avec cette commande : 
 ```bash
