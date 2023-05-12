@@ -53,7 +53,7 @@ email : admin@admin.com
 password : admin
 
 
-Il ne vous reste maintenant qu'à créer vos offres d'emploi qui seront visible pour toute le monde
+Il ne vous reste maintenant qu'à créer vos offres d'emploi qui seront visible pour toute le monde.
 
 Félicitations !!!!
 
