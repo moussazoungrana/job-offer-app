@@ -1,0 +1,22 @@
+{% extends 'layouts/base.html.twig' %}
+
+{% block title %}
+    Accueil
+{% endblock %}
+
+{% block content %}
+    <div class="offer-index-page mb-5 container">
+
+        <div class="title-group mb-5">
+            <img src="{{ asset('assets/images/icons/speaker.svg') }}" alt="" class="section-logo">
+            <h1 class="section-title">Offres d'emploi</h1>
+        </div>
+
+        <div class="offer-grid">
+            {% for offer in offers %}
+                {% include 'offers/_offer-card.html.twig' %}
+            {% endfor %}
+        </div>
+
+    </div>
+{% endblock %}

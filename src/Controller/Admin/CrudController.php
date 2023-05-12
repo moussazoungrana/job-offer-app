@@ -5,6 +5,8 @@ namespace App\Controller\Admin;
 use App\Data\CrudInterfaceData;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\QueryBuilder;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -26,16 +28,28 @@ class CrudController extends AbstractController
     protected bool $indexOnSave = true;
     protected EntityManagerInterface $em;
     protected RequestStack $requestStack;
+    protected PaginatorInterface $paginator;
 
-    public function __construct(EntityManagerInterface $em,RequestStack $requestStack)
+    public function __construct(
+        EntityManagerInterface $em,
+        PaginatorInterface     $paginator,
+        RequestStack           $requestStack
+    )
     {
         $this->em = $em;
         $this->requestStack = $requestStack;
+        $this->paginator = $paginator;
     }
 
-    public function crudIndex(): Response
+    public function crudIndex(QueryBuilder $query = null): Response
     {
-        $rows = $this->getRepository()->findAll();
+        /** @var Request $request */
+        $request = $this->requestStack->getCurrentRequest();
+        $page = $request ? $request->query->getInt('page', 1) : 1;
+        $query = $query ?: $this->getRepository()
+            ->createQueryBuilder('row')
+            ->orderBy('row.created_at', 'DESC');
+        $rows = $this->paginator->paginate($query->getQuery(), $page, $query->getMaxResults() ?: 15);
         return $this->render("admin/{$this->templatePath}/index.html.twig", [
             'rows' => $rows,
         ]);
@@ -95,7 +109,7 @@ class CrudController extends AbstractController
         $this->em->flush();
         $this->addFlash('success', 'Le contenu a bien été supprimé');
 
-        return $this->redirectToRoute($redirectRoute ?: ($this->routePrefix.'_index'));
+        return $this->redirectToRoute($redirectRoute ?: ($this->routePrefix . '_index'));
     }
 
 
@@ -105,10 +119,10 @@ class CrudController extends AbstractController
     protected function redirectAfterSave($entity): RedirectResponse
     {
         if ($this->indexOnSave) {
-            return $this->redirectToRoute($this->routePrefix.'_index');
+            return $this->redirectToRoute($this->routePrefix . '_index');
         }
 
-        return $this->redirectToRoute($this->routePrefix.'_edit', ['id' => $entity->getId()]);
+        return $this->redirectToRoute($this->routePrefix . '_edit', ['id' => $entity->getId()]);
     }
 
 

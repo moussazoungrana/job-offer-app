@@ -1,0 +1,12 @@
+<div class="offer-card--wrapper">
+    <a href="{{ path('offer_show',{id: offer.id }) }}" class="offer-card">
+        <div class="offer-card-cover">
+            <img src="{{ asset('assets/images/offer.jpg') }}" alt="" class="offer-card-cover-img">
+        </div>
+        <div class="offer-card-body">
+            <h2 class="offer-card-title">{{ offer.title }}</h2>
+            <span class="offer-card-description">{{ offer.description }}</span>
+        </div>
+
+    </a>
+</div>

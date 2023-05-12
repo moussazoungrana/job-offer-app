@@ -2,7 +2,7 @@
 
 namespace App\Controller\Admin;
 
-use App\Data\CategoryData;
+use App\Data\CategoryCrudData;
 use App\Entity\Category;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -34,7 +34,7 @@ class CategoryController extends CrudController
     public function new(): Response
     {
         $entity = new Category();
-        $data = new CategoryData($entity);
+        $data = new CategoryCrudData($entity);
         return $this->crudNew($data);
     }
 
@@ -43,7 +43,7 @@ class CategoryController extends CrudController
      */
     public function edit(Category $category): Response
     {
-        $data = (new CategoryData($category))->setEntityManager($this->em);
+        $data = (new CategoryCrudData($category))->setEntityManager($this->em);
         return $this->crudEdit($data);
     }
 

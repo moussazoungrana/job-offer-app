@@ -1,0 +1,56 @@
+.offer-show-page{
+  margin-top: space(3);
+  margin-bottom: space(3);
+
+  .section-title{
+    font-size: 24px;
+    font-weight: 700;
+    margin-top: space(4);
+    color: $primary-blue;
+    @include mobile(){
+      font-size: 20px;
+      margin-top: space(3);
+    }
+  }
+
+  .second-tags{
+    margin-top: space(4);
+    display: block;
+    font-size: 14px;
+    color: $primary-color;
+    font-weight: 700;
+  }
+
+}
+
+.offer-index-page{
+  margin-top: space(5);
+  margin-bottom: space(4);
+
+  @include mobile(){
+    margin-top: space(3);
+  }
+
+
+  .title-group{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .section-title{
+      font-size: 28px;
+      font-weight: 700;
+      color:  $primary-blue;
+      @include mobile(){
+        font-size: 18px;
+      }
+    }
+
+    .section-logo{
+      width: 28px;
+      height: 28px;
+      margin-right: space(1);
+    }
+
+  }
+}

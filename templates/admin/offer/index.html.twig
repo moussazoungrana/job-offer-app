@@ -36,6 +36,7 @@
                                 <thead>
                                 <tr>
                                     <th>Titre</th>
+                                    <th class="text-center"> Catégories</th>
                                     <th>Status</th>
                                     <th style="width:100px; min-width:100px;" class="text-center text-danger"><i
                                                 class="fa fa-bolt"> </i></th>
@@ -49,6 +50,11 @@
 
                                         <td>
                                             {{ row.title }}
+                                        </td>
+                                        <td class="text-center">
+                                            {% for category in row.categories %}
+                                                <span class="badge badge-info">{{ category.title }}</span>
+                                            {% endfor %}
                                         </td>
 
                                         <td>
@@ -86,6 +92,9 @@
                             </table>
                         </div>
                         <!-- /.card-body -->
+                        <div class="pagination">
+                            {{ knp_pagination_render(rows) }}
+                        </div>
                     </div>
                     <!-- /.card -->
                 </div>

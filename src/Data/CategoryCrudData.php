@@ -2,50 +2,45 @@
 
 namespace App\Data;
 
+use App\Entity\Category;
 use App\Entity\JobOffer;
+use App\Form\CategoryType;
 use App\Form\JobOfferType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
-class JobOfferData implements CrudInterfaceData
+class CategoryCrudData implements CrudInterfaceData
 {
     /**
      * @Assert\NotBlank
      */
     public ?string $title = null;
-    /**
-     * @Assert\NotBlank
-     */
+
     public ?string $description = null;
 
-    public bool $active = false;
+    private Category $entity;
 
-
-    private JobOffer $entity;
-
-    public function __construct(JobOffer $entity)
+    public function __construct(Category $entity)
     {
         $this->entity = $entity;
         $this->title = $entity->getTitle();
         $this->description = $entity->getDescription();
-        $this->active = $entity->isActive();
     }
 
     public function hydrate(): void
     {
         $this->entity->setTitle($this->title);
         $this->entity->setDescription($this->description);
-        $this->entity->setActive($this->active);
     }
 
-    public function getEntity(): JobOffer
+    public function getEntity(): Category
     {
         return $this->entity;
     }
 
     public function getFormClass(): string
     {
-        return JobOfferType::class;
+        return CategoryType::class;
     }
 
 

@@ -16,8 +16,8 @@
     <link rel="stylesheet" href=" {{ asset('assets/admin/adminlte/plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }} ">
 
 
-    {% block styles %}
-        {{ encore_entry_link_tags('app') }}
+    {% block stylesheets %}
+        {{ encore_entry_link_tags('admin') }}
     {% endblock %}
 
 
@@ -54,8 +54,8 @@
 <script src=" {{ asset("assets/admin/adminlte/plugins/jquery-mapael/jquery.mapael.min.js") }} "></script>
 <script src=" {{ asset("assets/admin/adminlte/plugins/jquery-mapael/maps/usa_states.min.js") }} "></script>
 
-{% block scripts %}
-    {{ encore_entry_script_tags('app') }}
+{% block javascripts %}
+    {{ encore_entry_script_tags('admin') }}
 {% endblock %}
 </body>
 

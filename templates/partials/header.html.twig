@@ -1,0 +1,68 @@
+<div class="page-header-wrapper hide-on-mobile">
+    <header class="page-header ">
+
+        <div class="header-inner container">
+            <a href="{{ path('home') }}" class="header-logo">Job App</a>
+            <nav class="header-navbar">
+                <ul class="header-navbar-links">
+
+
+                    <li>
+                        <a href="{{ path('offer_index') }}" class="header-navbar-link">
+                            <span>Offres d'emploi</span>
+                        </a>
+                    </li>
+
+                </ul>
+            </nav>
+
+        </div>
+    </header>
+</div>
+
+<div class="mobile-page-header-wrapper hide-on-desktop">
+    <header class="mobile-page-header container hide-on-desktop">
+        <a href="{{ path('home') }}" class="header-logo"> Job App</a>
+
+        <div class="mobile-header-button">
+
+
+            <div class="header-button-item bar-icon" id="show-mobile-navbar">
+                <svg   stroke="currentColor" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke="currentColor" stroke-linecap="round"  stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                </svg>
+
+            </div>
+            <div class="header-button-item bar-icon-close" id="hide-mobile-navbar">
+                <?xml version="1.0" ?>
+                <svg fill="currentColor"  width="24" height="24" stroke="currentColor" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                            fill="currentColor" stroke="currentColor" d="M 7.21875 5.78125 L 5.78125 7.21875 L 14.5625 16 L 5.78125 24.78125 L 7.21875 26.21875 L 16 17.4375 L 24.78125 26.21875 L 26.21875 24.78125 L 17.4375 16 L 26.21875 7.21875 L 24.78125 5.78125 L 16 14.5625 Z"/>
+                </svg>
+
+            </div>
+        </div>
+
+    </header>
+</div>
+<div class="mobile-header-nav-wrapper" id="mobile-menu">
+
+    <div class="mobile-header-nav-container">
+        <nav class="mobile-header-nav ">
+
+            <ul class="mobile-nav-items--wrapper">
+
+
+                <li class="mobile-nav-item">
+                    <a href="{{ path('offer_index') }}" class="">Offres d'emploi</a>
+                </li>
+
+
+            </ul>
+
+
+        </nav>
+
+    </div>
+
+</div>

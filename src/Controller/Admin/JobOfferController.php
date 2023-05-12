@@ -2,7 +2,7 @@
 
 namespace App\Controller\Admin;
 
-use App\Data\JobOfferData;
+use App\Data\JobOfferCrudData;
 use App\Entity\JobOffer;
 use App\Form\JobOfferType;
 use App\Repository\JobOfferRepository;
@@ -38,7 +38,7 @@ class JobOfferController extends CrudController
     public function new(): Response
     {
         $entity = new JobOffer();
-        $data = new JobOfferData($entity);
+        $data = new JobOfferCrudData($entity);
        return $this->crudNew($data);
     }
 
@@ -47,7 +47,7 @@ class JobOfferController extends CrudController
      */
     public function edit(Request $request, JobOffer $offer): Response
     {
-        $data = (new JobOfferData($offer))->setEntityManager($this->em);
+        $data = (new JobOfferCrudData($offer))->setEntityManager($this->em);
         return $this->crudEdit($data);
     }
 

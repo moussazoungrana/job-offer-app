@@ -1,0 +1,46 @@
+@import "tools/variables";
+@import "tools/mixins";
+@import "tools/animation";
+@import "tools/typography";
+@import "tools/layout";
+
+@import "modules/header";
+@import "modules/btn";
+@import "modules/form";
+@import "modules/pagination";
+@import "modules/offer";
+
+
+
+
+:root {
+    --gap: 20px;
+    --space: 8px;
+    --border: #d5e3ec;
+    --shadow: rgba(0, 0, 0, 0.16);
+    --header-height: 130px;
+    --color: #424242;
+    --green: #41cf7c;
+    --red: #f25353;
+}
+
+@include mobile() {
+    :root {
+        --header-height: 92px;
+    }
+}
+
+hr {
+    height: 1px;
+    background: var(--border);
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+
+
+@import "pages/home";
+@import "pages/offer";
+
+

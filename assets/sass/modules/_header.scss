@@ -1,0 +1,234 @@
+.page-header-wrapper{
+    height: 65px;
+}
+.page-header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    background-color: #FDFAFA;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.08);
+}
+
+.header-inner{
+    display: grid;
+    grid-template-columns: 165px 1fr auto;
+    align-items: center;
+    justify-content: center;
+    height: 65px;
+}
+
+.header-logo{
+    color: $primary-color;
+    font-weight: 700;
+    //font-weight: bold;
+    font-size: 28px;
+}
+
+.header-navbar-links{
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    //font-family: Roboto, sans-serif !important;
+
+    svg{
+        display: block !important;
+    }
+
+
+    li:not(:last-child){
+        //margin-right: space(5);
+    }
+    .header-navbar-link{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-weight: 700;
+        padding: space(1) space(3);
+        //border: none;
+        font-size: 14.5px;
+
+        &:hover{
+            border-radius: 5px;
+            color: $link-hover-color;
+        }
+    }
+}
+
+.header-button--wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    svg{
+        display: block !important;
+    }
+
+
+    .header-button-item:not(:last-child){
+        margin-right: space(1);
+    }
+    .header-button-item{
+
+    }
+
+    .header-button-icon{
+        color: #140e0e !important;
+
+        &:hover{
+            color: var(--primary-color) !important;
+        }
+
+        &.user-icon{
+            margin-left: 6px;
+        }
+    }
+
+
+}
+
+
+.mobile-page-header-wrapper{
+    height: 62px;
+}
+
+.mobile-page-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #FDFAFA;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.08);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 62px;
+    z-index: 10;
+    padding-bottom: space(1);
+    padding-top: space(1);
+
+    .mobile-header-logo{
+        color: $primary-color;
+        font-weight: 700;
+        //font-weight: bold;
+        font-size: 24px;
+    }
+
+    .bar-icon{
+        color:#000;
+
+    }
+    .bar-icon-close{
+        color: #000;
+        display: none;
+
+    }
+
+    .header-button-item {
+        &:first-child{
+            //margin-right: space(1);
+        }
+        img {
+            width: 24px;
+            height: 24px;
+        }
+    }
+}
+
+.mobile-header-button{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    .mobile-header-button-item:not(:last-child){
+        margin-right: space(1);
+    }
+    .mobile-header-button-item{
+
+    }
+
+    .mobile-header-button-icon{
+        color: #140e0e !important;
+
+        &:hover{
+            color: $primary-color !important;
+        }
+
+    }
+
+
+}
+
+.mobile-header-nav-wrapper{
+    width: 100%;
+    display: none;
+    position: fixed;
+    top: 62px;
+    // padding-top: 10px;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 10000;
+    overflow: auto;
+    background-color: #fff;
+
+
+
+    .mobile-header-nav {
+        display: flex;
+        flex-direction: column;
+        padding: 0 0;
+        box-sizing: border-box;
+        //font-family: Roboto, sans-serif;
+
+
+
+
+        .mobile-nav-items--wrapper {
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+            // padding-top: 5px;
+
+
+
+            .mobile-nav-item {
+
+                &:not(:last-child){
+                    border-bottom: 1px solid $border-color;
+                }
+
+
+                a {
+                    display: block;
+                    padding: 12px 16px;
+                    width: 100%;
+                    //color: $primary-color;
+                    font-weight: 500;
+                    font-size: 13.5px;
+                    text-decoration: none;
+                    // margin-bottom: 35px;
+
+                    box-sizing: border-box;
+
+
+
+                    &:hover{
+                        // background-color: #053d63;
+                        //color: $primary-blue;
+                    }
+
+                }
+
+                // margin-right: 15px;
+                text-transform: capitalize;
+
+
+
+            }
+
+
+        }
+    }
+}
