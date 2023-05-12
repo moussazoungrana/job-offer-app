@@ -28,7 +28,7 @@ class JobOfferController extends AbstractController
      */
     public function index(): Response
     {
-        $offers = $this->offerRepository->findBy(['active' => true]);
+        $offers = $this->offerRepository->findLatestActive();
         return $this->render('offers/index.html.twig',[
             'offers' => $offers
         ]);

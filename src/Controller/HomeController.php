@@ -24,7 +24,7 @@ class HomeController extends AbstractController
      */
     public function index(): Response
     {
-        $offers = $this->offerRepository->findBy(['active' => true]);
+        $offers = $this->offerRepository->findLatestActive(8);
         return $this->render('home.html.twig',[
             'offers' => $offers
         ]);

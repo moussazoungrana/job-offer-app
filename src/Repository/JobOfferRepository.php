@@ -39,6 +39,17 @@ class JobOfferRepository extends ServiceEntityRepository
         }
     }
 
+    public function findLatestActive($limit = null)
+    {
+        return $this->createQueryBuilder('j')
+            ->andWhere('j.active = true')
+            ->orderBy('j.created_at','DESC')
+            ->setMaxResults($limit)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
 //    /**
 //     * @return JobOffer[] Returns an array of JobOffer objects
 //     */
