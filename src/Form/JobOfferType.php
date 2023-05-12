@@ -19,12 +19,14 @@ class JobOfferType extends AbstractType
     {
         $builder
             ->add('title',TextType::class)
-            ->add('description',TextareaType::class)
+            ->add('description',TextareaType::class,[
+                'attr' => ['rows' => 8],
+            ])
             ->add('categories',EntityType::class,[
                 'class' => Category::class,
                 'multiple' => true,
                 'choice_label' => 'title',
-                'required' => false
+                'required' => false,
             ])
             ->add('active',CheckboxType::class,[
                 'required' => false
