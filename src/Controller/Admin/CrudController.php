@@ -16,7 +16,7 @@ use Symfony\Component\HttpFoundation\Response;
 /**
  * @template E
  */
-class CrudController extends AbstractController
+abstract class CrudController extends AbstractController
 {
     /**
      * @var class-string<E>
