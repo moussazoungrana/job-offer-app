@@ -78,8 +78,10 @@
                             </table>
                         </div>
 
-                        <div class="pagination">
-                            {{ knp_pagination_render(rows) }}
+                        <div class="card-footer">
+                            <div class="pagination">
+                                {{ knp_pagination_render(rows,'admin/partials/pagination.html.twig') }}
+                            </div>
                         </div>
                         <!-- /.card-body -->
                     </div>

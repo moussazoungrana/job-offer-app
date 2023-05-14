@@ -92,9 +92,13 @@
                             </table>
                         </div>
                         <!-- /.card-body -->
-                        <div class="pagination">
-                            {{ knp_pagination_render(rows) }}
+
+                        <div class="card-footer">
+                            <div class="pagination">
+                                {{ knp_pagination_render(rows,'admin/partials/pagination.html.twig') }}
+                            </div>
                         </div>
+
                     </div>
                     <!-- /.card -->
                 </div>
