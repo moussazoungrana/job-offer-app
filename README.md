@@ -4,7 +4,8 @@ Job App est une application d'offres d'emploi réalisée avec symfony
 ## Requirements
 
 - php : ^7.4
-- Symfony : ^5.4
+- Symfony : 5.4
+- postgresql
 - composer
 - node avec (yarn ou npm)
 
