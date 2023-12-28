@@ -43,7 +43,7 @@ class CategoryController extends CrudController
      */
     public function edit(Category $category): Response
     {
-        $data = (new CategoryCrudData($category))->setEntityManager($this->em);
+        $data = (new CategoryCrudData($category));
         return $this->crudEdit($data);
     }
 

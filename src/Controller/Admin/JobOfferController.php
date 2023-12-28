@@ -47,7 +47,7 @@ class JobOfferController extends CrudController
      */
     public function edit(Request $request, JobOffer $offer): Response
     {
-        $data = (new JobOfferCrudData($offer))->setEntityManager($this->em);
+        $data = (new JobOfferCrudData($offer));
         return $this->crudEdit($data);
     }
 

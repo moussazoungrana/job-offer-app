@@ -44,10 +44,4 @@ class CategoryCrudData implements CrudInterfaceData
     }
 
 
-    public function setEntityManager(EntityManagerInterface $em): self
-    {
-        $this->em = $em;
-
-        return $this;
-    }
 }
